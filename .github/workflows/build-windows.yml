@@ -15,7 +15,7 @@ jobs:
         target-arch: [x64, arm64]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node.js 14
         uses: actions/setup-node@v1
@@ -33,7 +33,7 @@ jobs:
         run: |
           if (Test-Path -Path dist\\*.sha256sum -PathType Leaf) { echo "::set-output name=EXISTS::true" } else { echo "::set-output name=EXISTS::false" }
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         if: steps.check_file.outputs.EXISTS == 'true'
         with:
           name: node${{ matrix.target-node }}-windows-${{ matrix.target-arch }}
